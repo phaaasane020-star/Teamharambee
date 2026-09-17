@@ -2,12 +2,11 @@ export const UPDATE_CATEGORIES = ["Campus Information", "Education", "Events", "
 
 export const UPDATES = [
   {
-    id: "sample-update-1",
-    slug: "sample-update-1",
+    id: "welcome-to-umat-team-harambee",
+    slug: "welcome-to-umat-team-harambee",
     category: "Team Update",
-    title: "[SAMPLE] Welcome to the platform",
-    date: "[DATE]",
-    summary: "Placeholder update — replace with real, student-focused news once confirmed.",
-    body: "[Full update content goes here.]",
+    title: "Welcome to UMaT & Meet Team Harambee",
+    summary: "Welcome to the official Team Harambee platform.",
+    body: "Brought to you by Team Harambee, we're here to connect you with the latest campus news, academic resources, and community updates. Stay tuned as we build a better campus experience together.",
   },
 ];

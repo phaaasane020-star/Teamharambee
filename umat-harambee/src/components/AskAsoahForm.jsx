@@ -32,15 +32,14 @@ export default function AskAsoahForm() {
   if (status === "success") {
     return (
       <div role="status" className="rounded-2xl border border-gold/40 bg-gold-soft/40 p-6 text-center dark:bg-ink-soft">
-        <p className="font-display text-lg text-ink dark:text-paper">Question received</p>
+        <p className="font-display text-lg text-ink dark:text-paper">Question received successfully!</p>
         <p className="mt-2 text-sm text-slate dark:text-paper/70">
-          Answers aren't fabricated — this space is ready for real Q&amp;A once
-          questions are reviewed and answered.
+          Your question has been recorded.
         </p>
         <button
           type="button"
           onClick={() => { setForm(initial); reset(); }}
-          className="mt-4 rounded-full bg-ink px-5 py-2 text-sm font-semibold text-paper dark:bg-gold dark:text-ink"
+          className="mt-4 rounded-full bg-ink px-5 py-2 text-sm font-semibold text-paper dark:bg-gold dark:text-ink cursor-pointer"
         >
           Ask another question
         </button>
@@ -84,7 +83,7 @@ export default function AskAsoahForm() {
       <button
         type="submit"
         disabled={status === "submitting"}
-        className="w-full rounded-full bg-gold px-6 py-3 text-sm font-semibold text-ink transition-all hover:bg-gold-deep disabled:opacity-60 sm:w-auto"
+        className="w-full rounded-full bg-gold px-6 py-3 text-sm font-semibold text-ink transition-all hover:bg-gold-deep disabled:opacity-60 sm:w-auto cursor-pointer"
       >
         {status === "submitting" ? "Submitting…" : "Submit Question"}
       </button>

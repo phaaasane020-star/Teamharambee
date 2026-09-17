@@ -37,13 +37,13 @@ export default function Footer() {
             <ul className="space-y-2 text-sm">
               <li><Link className="link-sweep" to="/contact">Get in Touch</Link></li>
               <li>
-                <a className="link-sweep" href={whatsappLink()} target="_blank" rel="noopener noreferrer">
-                  WhatsApp
-                </a>
+                <a className="link-sweep" href="https://chat.whatsapp.com/D4GYf4xkmPNFEduWtd6Mi8?s=sw&p=i&mlu=4" target="_blank" rel="noopener noreferrer">
+                   WhatsApp
+                  </a>
               </li>
               <li>
-                <a className="link-sweep" href={tiktokLink()} target="_blank" rel="noopener noreferrer">
-                  TikTok
+              <a className="link-sweep" href="https://www.tiktok.com/@harambee02" target="_blank" rel="noopener noreferrer">
+                 TikTok
                 </a>
               </li>
             </ul>

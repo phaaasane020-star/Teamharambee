@@ -169,26 +169,6 @@ export default function Home() {
           </SectionReveal>
         </div>
       </section>
-
-      {/* Events */}
-      <section className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
-        <SectionReveal>
-          <SectionTitle eyebrow="Get involved" title="Student Events & Campus Activities" />
-        </SectionReveal>
-        <div className="mt-10 grid gap-6 sm:grid-cols-2">
-          {EVENTS.map((e, i) => (
-            <SectionReveal key={e.id} delay={i * 60}>
-              <EventCard event={e} />
-            </SectionReveal>
-          ))}
-        </div>
-        <div className="mt-6 text-center">
-          <Link to="/events" className="link-sweep font-semibold text-ink dark:text-paper">
-            View all events →
-          </Link>
-        </div>
-      </section>
-
       {/* Get in touch + social */}
       <section className="bg-ink py-20 text-paper">
         <div className="mx-auto grid max-w-6xl gap-12 px-4 sm:px-6 lg:grid-cols-2 lg:px-8">

@@ -92,25 +92,12 @@ export default function LocationDetail() {
 
         <p className="mt-4 max-w-2xl leading-relaxed text-slate dark:text-paper/75">{location.description}</p>
 
-        <dl className="mt-6 grid gap-4 sm:grid-cols-2">
+        <dl className="mt-6">
           <div>
             <dt className="font-mono text-xs uppercase tracking-widest text-gold-deep dark:text-gold">Address</dt>
             <dd className="mt-1 text-sm text-ink dark:text-paper">{location.address}</dd>
           </div>
-          <div>
-            <dt className="font-mono text-xs uppercase tracking-widest text-gold-deep dark:text-gold">Nearby landmarks</dt>
-            <dd className="mt-1 text-sm text-ink dark:text-paper">
-              {location.nearbyLandmarks?.length ? location.nearbyLandmarks.join(", ") : "Not yet added"}
-            </dd>
-          </div>
         </dl>
-
-        <div className="mt-6 rounded-xl border border-mist bg-paper-dim p-4 text-sm dark:border-ink-soft dark:bg-ink-soft">
-          <p className="font-medium text-ink dark:text-paper">Accessibility information</p>
-          <p className="mt-1 text-slate dark:text-paper/70">
-            [Add accessibility notes once confirmed — step-free access, ramps, lift availability, etc.]
-          </p>
-        </div>
 
         <div className="mt-8">
           <NavigateButton location={location} />

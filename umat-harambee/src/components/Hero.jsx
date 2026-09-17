@@ -27,23 +27,32 @@ export default function Hero() {
           <div className="mt-8 flex flex-wrap gap-3">
             <Link
               to="/contact"
-              className="rounded-full bg-gold px-6 py-3 text-sm font-semibold text-ink transition-all hover:bg-gold-deep hover:shadow-[0_0_20px_rgba(242,183,5,0.5)]"
+              className="rounded-full bg-gold px-6 py-3 text-sm font-semibold text-ink transition-all hover:bg-gold-deep hover:shadow-[0_0_20px_rgba(242,183,5,0.5)] cursor-pointer"
             >
               Get in Touch
             </Link>
             <Link
-              to="/about"
-              className="rounded-full border border-paper/30 px-6 py-3 text-sm font-semibold text-paper transition-colors hover:border-gold hover:text-gold"
+              to="/gallery"
+              className="rounded-full border border-paper/30 px-6 py-3 text-sm font-semibold text-paper transition-colors hover:border-gold hover:text-gold cursor-pointer"
             >
               Explore UMaT
             </Link>
-            <Link
-              to="/campus-guide"
-              className="group inline-flex items-center gap-2 rounded-full border border-paper/30 px-6 py-3 text-sm font-semibold text-paper transition-colors hover:border-gold hover:text-gold"
+            <a
+              href="https://chat.whatsapp.com/D4GYf4xkmPNFEduWtd6Mi8?s=sw&p=i&mlu=4"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="rounded-full border border-paper/30 px-6 py-3 text-sm font-semibold text-paper transition-colors hover:border-gold hover:text-gold cursor-pointer"
             >
-              <span className="inline-block transition-transform group-hover:rotate-45">🧭</span>
-              Find Your Way Around UMaT
-            </Link>
+              💬 WhatsApp Group
+            </a>
+            <a
+              href="https://www.tiktok.com/@harambee02"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="rounded-full border border-paper/30 px-6 py-3 text-sm font-semibold text-paper transition-colors hover:border-gold hover:text-gold cursor-pointer"
+            >
+              🎵 TikTok Channel
+            </a>
           </div>
         </div>
 

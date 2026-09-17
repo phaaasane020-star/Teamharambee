@@ -27,7 +27,7 @@ export default function Gallery() {
             role="tab"
             aria-selected={filter === cat}
             onClick={() => setFilter(cat)}
-            className={`rounded-full border px-4 py-1.5 text-sm font-medium transition-colors ${
+            className={`rounded-full border px-4 py-1.5 text-sm font-medium transition-colors cursor-pointer ${
               filter === cat
                 ? "border-gold bg-gold text-ink"
                 : "border-mist text-slate hover:border-ink dark:border-ink-soft dark:text-paper/70"
@@ -44,7 +44,7 @@ export default function Gallery() {
             key={item.id}
             type="button"
             onClick={() => setOpenIndex(i)}
-            className="group aspect-square overflow-hidden rounded-xl bg-paper-dim dark:bg-ink-soft"
+            className="group aspect-square overflow-hidden rounded-xl bg-paper-dim dark:bg-ink-soft cursor-pointer"
           >
             {item.image && !item.image.startsWith("[") ? (
               <img
@@ -74,7 +74,7 @@ export default function Gallery() {
             type="button"
             onClick={() => setOpenIndex(null)}
             aria-label="Close image viewer"
-            className="absolute right-4 top-4 grid h-10 w-10 place-items-center rounded-full bg-white/10 text-paper"
+            className="absolute right-4 top-4 grid h-10 w-10 place-items-center rounded-full bg-white/10 text-paper cursor-pointer"
           >
             ✕
           </button>
@@ -85,7 +85,7 @@ export default function Gallery() {
               setOpenIndex((i) => (i - 1 + items.length) % items.length);
             }}
             aria-label="Previous image"
-            className="absolute left-4 grid h-10 w-10 place-items-center rounded-full bg-white/10 text-paper"
+            className="absolute left-4 grid h-10 w-10 place-items-center rounded-full bg-white/10 text-paper cursor-pointer"
           >
             ‹
           </button>
@@ -106,7 +106,7 @@ export default function Gallery() {
               setOpenIndex((i) => (i + 1) % items.length);
             }}
             aria-label="Next image"
-            className="absolute right-4 grid h-10 w-10 place-items-center rounded-full bg-white/10 text-paper"
+            className="absolute right-4 grid h-10 w-10 place-items-center rounded-full bg-white/10 text-paper cursor-pointer"
           >
             ›
           </button>

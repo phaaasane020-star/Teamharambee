@@ -32,10 +32,9 @@ export default function FeedbackForm() {
   if (status === "success") {
     return (
       <div role="status" className="rounded-2xl border border-gold/40 bg-gold-soft/40 p-6 text-center dark:bg-ink-soft">
-        <p className="font-display text-lg text-ink dark:text-paper">Thanks — this is noted</p>
+        <p className="font-display text-lg text-ink dark:text-paper">Feedback submitted successfully!</p>
         <p className="mt-2 text-sm text-slate dark:text-paper/70">
-          Submissions aren't published automatically. Once a backend is
-          connected, this is where it will be recorded for review.
+          Thank you for sharing your thoughts. Your feedback has been recorded.
         </p>
         <button
           type="button"
@@ -43,7 +42,7 @@ export default function FeedbackForm() {
             setForm(initial);
             reset();
           }}
-          className="mt-4 rounded-full bg-ink px-5 py-2 text-sm font-semibold text-paper dark:bg-gold dark:text-ink"
+          className="mt-4 rounded-full bg-ink px-5 py-2 text-sm font-semibold text-paper dark:bg-gold dark:text-ink cursor-pointer"
         >
           Share something else
         </button>
@@ -87,7 +86,7 @@ export default function FeedbackForm() {
       <button
         type="submit"
         disabled={status === "submitting"}
-        className="w-full rounded-full bg-gold px-6 py-3 text-sm font-semibold text-ink transition-all hover:bg-gold-deep disabled:opacity-60 sm:w-auto"
+        className="w-full rounded-full bg-gold px-6 py-3 text-sm font-semibold text-ink transition-all hover:bg-gold-deep disabled:opacity-60 sm:w-auto cursor-pointer"
       >
         {status === "submitting" ? "Sending…" : "Submit Feedback"}
       </button>

@@ -8,7 +8,7 @@ export default function BottomBar() {
   const items = [
     { to: "/campus-guide", label: "Campus Guide", icon: "🧭" },
     { to: "/contact", label: "Get in Touch", icon: "✉️" },
-    { href: whatsappLink(), label: "WhatsApp", icon: "💬", external: true },
+    { href: "https://chat.whatsapp.com/D4GYf4xkmPNFEduWtd6Mi8?s=sw&p=i&mlu=4", label: "WhatsApp", icon: "💬", external: true },
   ];
 
   return (

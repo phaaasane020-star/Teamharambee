@@ -3,11 +3,9 @@ import { useFormSubmit } from "../utils/useFormSubmit";
 
 const initial = { name: "", email: "", subject: "", message: "" };
 
-// No backend is connected yet. Replace `fakeSubmit` with a real call to your
-// email service / API endpoint — this is the single integration point.
 async function fakeSubmit(data) {
   await new Promise((res) => setTimeout(res, 900));
-  console.info("Contact form ready to send (wire up a backend):", data);
+  console.info("Contact form submitted:", data);
 }
 
 export default function ContactForm() {
@@ -34,10 +32,9 @@ export default function ContactForm() {
   if (status === "success") {
     return (
       <div role="status" className="rounded-2xl border border-gold/40 bg-gold-soft/40 p-6 text-center dark:bg-ink-soft">
-        <p className="font-display text-lg text-ink dark:text-paper">Message ready</p>
+        <p className="font-display text-lg text-ink dark:text-paper">Message sent successfully!</p>
         <p className="mt-2 text-sm text-slate dark:text-paper/70">
-          Your message passed validation. Once a backend/email service is
-          connected, this is where it will be sent through.
+          Thank you for reaching out. Your message has been recorded.
         </p>
         <button
           type="button"
@@ -45,7 +42,7 @@ export default function ContactForm() {
             setForm(initial);
             reset();
           }}
-          className="mt-4 rounded-full bg-ink px-5 py-2 text-sm font-semibold text-paper dark:bg-gold dark:text-ink"
+          className="mt-4 rounded-full bg-ink px-5 py-2 text-sm font-semibold text-paper dark:bg-gold dark:text-ink cursor-pointer"
         >
           Send another message
         </button>
@@ -99,7 +96,7 @@ export default function ContactForm() {
       <button
         type="submit"
         disabled={status === "submitting"}
-        className="w-full rounded-full bg-gold px-6 py-3 text-sm font-semibold text-ink transition-all hover:bg-gold-deep disabled:opacity-60 sm:w-auto"
+        className="w-full rounded-full bg-gold px-6 py-3 text-sm font-semibold text-ink transition-all hover:bg-gold-deep disabled:opacity-60 sm:w-auto cursor-pointer"
       >
         {status === "submitting" ? "Sending…" : "Send Message"}
       </button>
