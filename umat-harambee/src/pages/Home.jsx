@@ -175,7 +175,7 @@ export default function Home() {
           <SectionReveal>
             <h2 className="font-display text-3xl">Get in Touch</h2>
             <p className="mt-3 text-paper/70">
-              Reach out with questions, ideas or feedback — through the form,
+              Reach out with questions, ideas or feedback through the form,
               or directly on WhatsApp.
             </p>
             <div className="mt-6 flex flex-wrap gap-3">
