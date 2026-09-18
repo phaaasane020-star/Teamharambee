@@ -27,7 +27,7 @@ export default function AcademicBank() {
             className="relative mt-10 grid h-24 w-24 place-items-center rounded-full border-2 border-gold/40"
           >
             <span className="absolute inset-0 animate-ping rounded-full border-2 border-gold/30" />
-            <span className="text-4xl">📅</span>
+            <span className="text-4xl">🕜</span>
           </div>
 
           <h1
