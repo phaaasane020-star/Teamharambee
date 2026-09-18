@@ -65,7 +65,7 @@ export default function Footer() {
             student-focused platform, not an official university website.
           </p>
           <a
-            href="https://paatech-portfolio.vercel.app"
+            href="https://paatech.vercel.app"
             target="_blank"
             rel="noopener noreferrer"
             className="link-sweep text-paper/70"
