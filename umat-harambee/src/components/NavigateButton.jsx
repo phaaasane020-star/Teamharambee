@@ -7,18 +7,30 @@ export default function NavigateButton({ location, className = "" }) {
   const [state, setState] = useState("idle");
   const [showWhy, setShowWhy] = useState(false);
 
+  // Helper to safely extract coordinates whether they are an array [lat, lng] or object {lat, lng}
+  const getCoords = () => {
+    if (!location.coordinates) return null;
+    if (Array.isArray(location.coordinates)) {
+      return location.coordinates.length === 2 ? { lat: location.coordinates[0], lng: location.coordinates[1] } : null;
+    }
+    return location.coordinates;
+  };
+
   const openWithOrigin = (origin) => {
+    const coords = getCoords();
     const url = buildDirectionsUrl({
       origin,
       destinationName: location.name,
-      destinationCoords: location.coordinatesVerified ? location.coordinates : null,
+      destinationCoords: coords || null,
+      destinationAddress: `${location.name}, University of Mines and Technology, Tarkwa, Ghana`
     });
     window.open(url, "_blank", "noopener,noreferrer");
   };
 
   const openWithoutOrigin = () => {
-    const url = location.coordinatesVerified
-      ? buildDirectionsUrl({ origin: null, destinationName: location.name, destinationCoords: location.coordinates })
+    const coords = getCoords();
+    const url = coords
+      ? buildDirectionsUrl({ origin: null, destinationName: location.name, destinationCoords: coords })
       : buildSearchUrl(`${location.name}, University of Mines and Technology, Tarkwa, Ghana`);
     window.open(url, "_blank", "noopener,noreferrer");
   };
@@ -75,7 +87,7 @@ export default function NavigateButton({ location, className = "" }) {
         <button
           type="button"
           onClick={() => setShowWhy(true)}
-          className="inline-flex items-center gap-2 rounded-full bg-gold px-6 py-3 text-sm font-semibold text-ink transition-all hover:bg-gold-deep hover:shadow-[0_0_18px_rgba(242,183,5,0.5)]"
+          className="inline-flex items-center gap-2 rounded-full bg-gold px-6 py-3 text-sm font-semibold text-ink transition-all hover:bg-gold-deep hover:shadow-[0_0_18px_rgba(242,183,5,0.5)] cursor-pointer"
         >
           <span aria-hidden="true">🧭</span> Navigate with Google Maps
         </button>
@@ -83,7 +95,7 @@ export default function NavigateButton({ location, className = "" }) {
 
       {showWhy && state === "idle" && (
         <div className="mt-3 rounded-xl border border-mist bg-paper-dim p-4 text-sm dark:border-ink-soft dark:bg-ink-soft animate-reveal">
-          <p>
+          <p className="text-gray-800 dark:text-paper">
             We'll ask your browser for your current location so we can point
             Google Maps from where you are to <strong>{location.name}</strong>.
             Your location is used only in your browser to build this link —
@@ -93,14 +105,14 @@ export default function NavigateButton({ location, className = "" }) {
             <button
               type="button"
               onClick={requestAndNavigate}
-              className="rounded-full bg-ink px-4 py-2 text-xs font-semibold text-paper dark:bg-gold dark:text-ink"
+              className="rounded-full bg-ink px-4 py-2 text-xs font-semibold text-paper dark:bg-gold dark:text-ink cursor-pointer"
             >
               Continue
             </button>
             <button
               type="button"
               onClick={openWithoutOrigin}
-              className="rounded-full border border-ink px-4 py-2 text-xs font-semibold text-ink dark:border-paper dark:text-paper"
+              className="rounded-full border border-ink px-4 py-2 text-xs font-semibold text-ink dark:border-paper dark:text-paper cursor-pointer"
             >
               Skip, just open Google Maps
             </button>
@@ -119,7 +131,7 @@ export default function NavigateButton({ location, className = "" }) {
         state === "timeout" ||
         state === "unsupported") && (
         <div className="mt-3 rounded-xl border border-mist bg-paper-dim p-4 text-sm dark:border-ink-soft dark:bg-ink-soft animate-reveal">
-          <p className="font-medium">
+          <p className="font-medium text-gray-900 dark:text-paper">
             {state === "denied" && "Location permission was denied."}
             {state === "unavailable" && "Your location is unavailable right now."}
             {state === "timeout" && "Finding your location took too long."}
@@ -132,28 +144,28 @@ export default function NavigateButton({ location, className = "" }) {
             <button
               type="button"
               onClick={openWithoutOrigin}
-              className="rounded-full bg-gold px-4 py-2 text-xs font-semibold text-ink"
+              className="rounded-full bg-gold px-4 py-2 text-xs font-semibold text-ink cursor-pointer"
             >
               Open Google Maps
             </button>
             <button
               type="button"
               onClick={copyLocation}
-              className="rounded-full border border-ink px-4 py-2 text-xs font-semibold text-ink dark:border-paper dark:text-paper"
+              className="rounded-full border border-ink px-4 py-2 text-xs font-semibold text-ink dark:border-paper dark:text-paper cursor-pointer"
             >
               Copy Location
             </button>
             <button
               type="button"
               onClick={requestAndNavigate}
-              className="rounded-full border border-ink px-4 py-2 text-xs font-semibold text-ink dark:border-paper dark:text-paper"
+              className="rounded-full border border-ink px-4 py-2 text-xs font-semibold text-ink dark:border-paper dark:text-paper cursor-pointer"
             >
               Try Again
             </button>
             <button
               type="button"
               onClick={shareLocation}
-              className="rounded-full border border-ink px-4 py-2 text-xs font-semibold text-ink dark:border-paper dark:text-paper"
+              className="rounded-full border border-ink px-4 py-2 text-xs font-semibold text-ink dark:border-paper dark:text-paper cursor-pointer"
             >
               Share Location
             </button>
