@@ -1,26 +1,25 @@
-// Builds a Google Maps Directions URL. Works with no API key by using the
-// public maps.google.com directions endpoint. Origin is the student's current
-// coordinates (obtained locally via geolocation and never sent to a server);
-// destination is the selected campus location.
-export function buildDirectionsUrl({ origin, destinationName, destinationCoords }) {
-  const destination = destinationCoords
-    ? `${destinationCoords.lat},${destinationCoords.lng}`
-    : encodeURIComponent(`${destinationName}, University of Mines and Technology, Tarkwa, Ghana`);
+// Helper functions to build reliable Google Maps URLs using official query parameters
 
-  const params = new URLSearchParams({
-    api: "1",
-    destination,
-    travelmode: "walking",
-  });
+export function buildDirectionsUrl({ origin, destinationName, destinationCoords, destinationAddress }) {
+  const baseUrl = "https://www.google.com/maps/dir/";
+  
+  // Format origin (if user location was granted)
+  const originParam = origin ? `${origin.lat},${origin.lng}` : "";
+  
+  // Prefer exact coordinates for destination if available, otherwise use address/name
+  const destParam = destinationCoords 
+    ? `${destinationCoords.lat},${destinationCoords.lng}` 
+    : encodeURIComponent(destinationAddress || destinationName);
 
-  if (origin) {
-    params.set("origin", `${origin.lat},${origin.lng}`);
+  // Using Google Maps official query parameter structure (api=1)
+  // This prevents path-routing errors and handles special characters/spaces properly
+  if (originParam) {
+    return `https://www.google.com/maps/dir/?api=1&origin=${originParam}&destination=${destParam}`;
+  } else {
+    return `https://www.google.com/maps/dir/?api=1&destination=${destParam}`;
   }
-
-  return `https://www.google.com/maps/dir/?${params.toString()}`;
 }
 
-// Fallback: open a plain search/place link when we only have a name/address.
 export function buildSearchUrl(query) {
   return `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(query)}`;
 }
