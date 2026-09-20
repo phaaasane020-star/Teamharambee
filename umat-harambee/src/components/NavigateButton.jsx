@@ -6,8 +6,8 @@ import { buildDirectionsUrl, buildSearchUrl } from "../utils/maps";
 export default function NavigateButton({ location, className = "" }) {
   const [state, setState] = useState("idle");
   const [showWhy, setShowWhy] = useState(false);
+  const [verifiedCoords, setVerifiedCoords] = useState(null);
 
-  // Helper to safely extract coordinates whether they are an array [lat, lng] or object {lat, lng}
   const getCoords = () => {
     if (!location.coordinates) return null;
     if (Array.isArray(location.coordinates)) {
@@ -40,8 +40,8 @@ export default function NavigateButton({ location, className = "" }) {
     setState("requesting");
     try {
       const coords = await getCurrentPosition();
-      setState("granted");
-      openWithOrigin(coords);
+      setVerifiedCoords(coords);
+      setState("granted"); // Stops here so user can tap the direct button, bypassing iOS popup blocking
     } catch (err) {
       if (!("geolocation" in navigator)) {
         setState("unsupported");
@@ -60,7 +60,7 @@ export default function NavigateButton({ location, className = "" }) {
       setState("copied");
       setTimeout(() => setState("idle"), 2000);
     } catch {
-      /* clipboard unavailable — user can still use Open Google Maps / Share */
+      /* clipboard unavailable */
     }
   };
 
@@ -74,7 +74,7 @@ export default function NavigateButton({ location, className = "" }) {
       try {
         await navigator.share(shareData);
       } catch {
-        /* user cancelled share — nothing to do */
+        /* user cancelled */
       }
     } else {
       copyLocation();
@@ -126,6 +126,19 @@ export default function NavigateButton({ location, className = "" }) {
         </p>
       )}
 
+      {state === "granted" && (
+        <div className="mt-3 rounded-xl border border-gold/40 bg-paper-dim p-4 text-sm dark:border-ink-soft dark:bg-ink-soft animate-reveal">
+          <p className="font-medium text-gray-900 dark:text-paper mb-2">Location acquired successfully!</p>
+          <button
+            type="button"
+            onClick={() => openWithOrigin(verifiedCoords)}
+            className="w-full py-3 rounded-full bg-gold text-ink font-bold text-sm shadow-md hover:bg-gold-deep transition-all cursor-pointer"
+          >
+            🗺️ Open Directions in Google Maps Now
+          </button>
+        </div>
+      )}
+
       {(state === "denied" ||
         state === "unavailable" ||
         state === "timeout" ||
@@ -161,13 +174,6 @@ export default function NavigateButton({ location, className = "" }) {
               className="rounded-full border border-ink px-4 py-2 text-xs font-semibold text-ink dark:border-paper dark:text-paper cursor-pointer"
             >
               Try Again
-            </button>
-            <button
-              type="button"
-              onClick={shareLocation}
-              className="rounded-full border border-ink px-4 py-2 text-xs font-semibold text-ink dark:border-paper dark:text-paper cursor-pointer"
-            >
-              Share Location
             </button>
           </div>
         </div>
