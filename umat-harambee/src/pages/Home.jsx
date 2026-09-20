@@ -89,22 +89,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Student priorities */}
-      <section className="bg-paper-dim py-20 dark:bg-ink-soft">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <SectionReveal>
-            <SectionTitle eyebrow="Student Priorities" title="What Matters to Students" />
-          </SectionReveal>
-          <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-            {PRIORITIES.map((p, i) => (
-              <SectionReveal key={p.id} delay={i * 60}>
-                <PriorityCard title={p.title} description={p.description} />
-              </SectionReveal>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* Campus Guide teaser */}
       <section className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
         <SectionReveal>
