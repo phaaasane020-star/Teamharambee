@@ -2,7 +2,7 @@
 // Anything wrapped in [BRACKETS] is a placeholder — replace with real, verified information.
 export const CANDIDATE = {
   name: "Asoah Mensah Stanley",
-  photo: "/images/haram.jpeg", // e.g. "/images/stanley-portrait.jpg"
+  photo: "/images/exeat.png", // e.g. "/images/stanley-portrait.jpg"
   programme: "Petroleum Engineering",
   department: "Department Of Petroleum and Natural Gas Engineering",
   level: "200",
